@@ -1,7 +1,6 @@
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { render } from '../utils/test-utils';
 import App from '../App';
 
-test('renders learn react link', () => {
+it('renders learn react link', () => {
   render(<App />);
 });
