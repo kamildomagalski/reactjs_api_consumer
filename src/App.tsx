@@ -1,12 +1,12 @@
-import Header from './components/Header/Header';
+import ViewLayout from './components/ViewLayout/ViewLayout';
+
 import './app.scss';
 
 function App() {
   return (
-    <>
-      <Header />
+    <ViewLayout>
       <p>'Hello worldd'</p>
-    </>
+    </ViewLayout>
   );
 }
 
