@@ -24,8 +24,12 @@ export default function MovieList({ ...props }: Props): JSX.Element {
   }, [selectedMovie]);
 
   const handleGetMovies = async () => {
+    setLoading(true);
     const results = await getPopularMovies();
-    if (results) setMovies(results);
+    if (results) {
+      setMovies(results);
+      setLoading(false);
+    }
   };
 
   const handleShowModal = useCallback((id: number) => {
@@ -56,9 +60,10 @@ export default function MovieList({ ...props }: Props): JSX.Element {
     );
   }, [selectedMovie, movies, handleCloseModal]);
 
-  if (!movies.length) {
+  if (!movies.length && !loading) {
     return <section className={styles.wrapper}>{movieButton}</section>;
   }
+  if (loading) return <section className={styles.wrapper}>loading results...</section>;
   return (
     <section className={styles.wrapper}>
       {selectedMovie && selectedMovieModal}
