@@ -10,7 +10,7 @@ export default function Card({ ...props }: Props): JSX.Element {
 
   const handleDisplay = useCallback(() => handleShowModal(id), [id, handleShowModal]);
   return (
-    <div className={styles.wrapper} onClick={handleDisplay}>
+    <div data-testid={`card_${id}`} className={styles.wrapper} onClick={handleDisplay}>
       <div className={styles.poster}>
         <img
           data-testid='image'

@@ -20,7 +20,6 @@ export const getPopularMovies = async (history: History): Promise<Movie[] | unde
     };
     if (response.ok) {
       const data: JSONResponse = await response.json();
-
       return data.results.map((result: Movie) => {
         const { id, original_language, original_title, overview, poster_path, release_date, vote_average } = result;
         const preparedData: Movie = {

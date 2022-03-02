@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useMemo } from 'react';
+import { useCallback, useState, useMemo } from 'react';
 import Button from '../../common/Button/Button';
 import Card from '../Card/Card';
 import DetailModal from '../DetailModal/DetailModal';
