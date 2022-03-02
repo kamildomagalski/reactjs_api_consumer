@@ -8,6 +8,7 @@ import { getPopularMovies } from '../../utils/apiQuerries';
 import { Movie } from '../../types/types';
 
 import styles from './movieList.module.scss';
+import { useHistory } from 'react-router-dom';
 
 interface Props {
   movies: Movie[];
@@ -18,14 +19,11 @@ export default function MovieList({ ...props }: Props): JSX.Element {
   const { movies, setMovies } = props;
   const [selectedMovie, setSelectedMovie] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    console.log(selectedMovie);
-  }, [selectedMovie]);
+  const history = useHistory();
 
   const handleGetMovies = async () => {
     setLoading(true);
-    const results = await getPopularMovies();
+    const results = await getPopularMovies(history);
     if (results) {
       setMovies(results);
       setLoading(false);

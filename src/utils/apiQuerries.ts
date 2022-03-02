@@ -1,9 +1,10 @@
 import { Movie, MovieData } from '../types/types';
+import { History } from 'history';
 
 const apiKey = process.env.REACT_APP_API_KEY;
 const baseUrl = 'https://api.themoviedb.org/3';
 
-export const getPopularMovies = async (): Promise<Movie[] | undefined> => {
+export const getPopularMovies = async (history: History): Promise<Movie[] | undefined> => {
   try {
     const response = await fetch(`${baseUrl}/discover/movie?api_key=${apiKey}&language=en`, {
       method: 'GET',
@@ -34,7 +35,7 @@ export const getPopularMovies = async (): Promise<Movie[] | undefined> => {
         return preparedData;
       });
     } else {
-      console.log(response);
+      history.replace(`/${response.status}`);
     }
   } catch (error) {
     console.log(error);
