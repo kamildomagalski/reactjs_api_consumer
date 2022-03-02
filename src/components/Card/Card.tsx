@@ -3,13 +3,12 @@ import { Movie } from '../../types/types';
 import styles from './card.module.scss';
 
 interface Props extends Movie {
-  handleShowInfo: (id: number) => void;
+  handleShowModal: (id: number) => void;
 }
 export default function Card({ ...props }: Props): JSX.Element {
-  const { id, original_language, original_title, overview, poster_path, release_date, vote_average, handleShowInfo } =
-    props;
+  const { id, original_language, original_title, poster_path, release_date, vote_average, handleShowModal } = props;
 
-  const handleDisplay = useCallback(() => handleShowInfo(id), [id, handleShowInfo]);
+  const handleDisplay = useCallback(() => handleShowModal(id), [id, handleShowModal]);
   return (
     <div className={styles.wrapper} onClick={handleDisplay}>
       <div className={styles.poster}>
@@ -28,10 +27,6 @@ export default function Card({ ...props }: Props): JSX.Element {
         <p data-testid='releaseDate'>Date of release: {release_date}</p>
         <p data-testid='voteAverage'>Average vote: {vote_average}</p>
       </div>
-      {/* <div className={styles.descrition}>
-        <p>Description</p>
-        <p data-testid='overview'>{overview}</p>
-      </div> */}
     </div>
   );
 }

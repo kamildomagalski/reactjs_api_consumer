@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import Button from '../../common/Button/Button';
 import Card from '../Card/Card';
+import DetailModal from '../DetailModal/DetailModal';
 
 import { BUTTON_GET_RANDOM_MOVIES } from '../../helpers/constans';
 import { getPopularMovies } from '../../utils/apiQuerries';
@@ -27,15 +28,40 @@ export default function MovieList({ ...props }: Props): JSX.Element {
     if (results) setMovies(results);
   };
 
-  const handleShowInfo = useCallback((id: number) => {
+  const handleShowModal = useCallback((id: number) => {
     setSelectedMovie(id);
   }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setSelectedMovie(null);
+  }, []);
+
   const movieButton = <Button buttonText={BUTTON_GET_RANDOM_MOVIES} onClick={handleGetMovies} />;
+
+  const selectedMovieModal = useMemo(() => {
+    const movie: Movie | undefined = movies.find((movie) => movie.id === selectedMovie);
+    if (!movie) return;
+    const { id, original_language, original_title, overview, poster_path, release_date, vote_average } = movie;
+    return (
+      <DetailModal
+        id={id}
+        original_language={original_language}
+        original_title={original_title}
+        overview={overview}
+        poster_path={poster_path}
+        release_date={release_date}
+        vote_average={vote_average}
+        handleCloseModal={handleCloseModal}
+      />
+    );
+  }, [selectedMovie, movies, handleCloseModal]);
+
   if (!movies.length) {
     return <section className={styles.wrapper}>{movieButton}</section>;
   }
   return (
     <section className={styles.wrapper}>
+      {selectedMovie && selectedMovieModal}
       <div className={styles.gridContainer}>
         {movies.map((movie) => {
           const { id, original_language, original_title, overview, poster_path, release_date, vote_average } = movie;
@@ -49,7 +75,7 @@ export default function MovieList({ ...props }: Props): JSX.Element {
                 poster_path={poster_path}
                 release_date={release_date}
                 vote_average={vote_average}
-                handleShowInfo={handleShowInfo}
+                handleShowModal={handleShowModal}
               />
             </div>
           );
