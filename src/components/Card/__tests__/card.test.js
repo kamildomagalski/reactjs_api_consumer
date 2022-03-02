@@ -20,11 +20,10 @@ it('rednders component without crashing', () => {
 
 it('renders contents correctly', () => {
   const { getByTestId } = render(<Card {...mockedProps} />);
-  const { original_language, original_title, overview, poster_path, release_date, vote_average } = mockedProps;
+  const { original_language, original_title, poster_path, release_date, vote_average } = mockedProps;
 
   expect(getByTestId('image').src).toContain(`https://image.tmdb.org/t/p/w500/${poster_path}`);
   expect(getByTestId('title')).toHaveTextContent(`${original_title} (${original_language})`);
   expect(getByTestId('releaseDate')).toHaveTextContent(`Date of release: ${release_date}`);
   expect(getByTestId('voteAverage')).toHaveTextContent(`Average vote: ${vote_average}`);
-  expect(getByTestId('overview')).toHaveTextContent(overview);
 });

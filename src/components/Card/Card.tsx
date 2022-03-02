@@ -13,19 +13,25 @@ export default function Card({ ...props }: Props): JSX.Element {
   return (
     <div className={styles.wrapper} onClick={handleDisplay}>
       <div className={styles.poster}>
-        <img data-testid='image' src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt='' />
+        <img
+          data-testid='image'
+          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+          alt={`poster for ${original_title}`}
+        />
       </div>
-      <h2 data-testid='title' className={styles.title}>
-        {original_title} ({original_language})
-      </h2>
+      <div className={styles.titleWrapper}>
+        <h2 data-testid='title' className={styles.title}>
+          {original_title} ({original_language})
+        </h2>
+      </div>
       <div className={styles.info}>
         <p data-testid='releaseDate'>Date of release: {release_date}</p>
         <p data-testid='voteAverage'>Average vote: {vote_average}</p>
       </div>
-      <div className={styles.descrition}>
+      {/* <div className={styles.descrition}>
         <p>Description</p>
         <p data-testid='overview'>{overview}</p>
-      </div>
+      </div> */}
     </div>
   );
 }

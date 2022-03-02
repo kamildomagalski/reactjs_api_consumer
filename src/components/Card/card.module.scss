@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 1px 1px 5px purple;
+  }
+  &:active {
+    transform: scale(1.02);
+  }
+  .poster {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    height: 70%;
+    img {
+      width: auto;
+      height: 100%;
+      max-height: none;
+    }
+  }
+  .titleWrapper {
+    margin: 10px 0;
+    max-height: 42px;
+    max-width: 100%;
+    .title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      // line-height: 1rem;
+      // max-height: 2.0rem;
+    }
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}

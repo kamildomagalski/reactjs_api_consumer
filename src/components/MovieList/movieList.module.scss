@@ -1,8 +1,26 @@
-.wrapper{
-	display: flex;
-	align-items: flex-start;
-	justify-content: center;
-	padding: 50px 0;
-	height: calc(100% - 92px);
-	width: 100%;
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 50px 0;
+  height: calc(100% - 92px);
+  width: 100%;
+  .gridContainer {
+		overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+    grid-auto-rows: 300px;
+    justify-content: center;
+    grid-gap: 30px 20px;
+    height: 100%;
+    width: 100%;
+		padding: 5px 0;
+  }
+  .cardWrapper {
+    display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 100%;
+		width: 250px;
+  }
 }
